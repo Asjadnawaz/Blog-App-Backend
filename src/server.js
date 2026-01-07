@@ -16,7 +16,7 @@ const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
 // Force backend to listen on 5001 during development to avoid local port conflicts
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(helmet()); // Security headers
@@ -29,7 +29,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://blog-app-frontend-6e3slqy6j-asjad-nawaz-khans-projects.vercel.app'],
+  origin: ['https://blog-app-frontend-6e3slqy6j-asjad-nawaz-khans-projects.vercel.app', 'http://localhost:5173'],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
