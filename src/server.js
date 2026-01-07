@@ -29,8 +29,8 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(cors({
-  origin: ['https://blog-app-frontend-6e3slqy6j-asjad-nawaz-khans-projects.vercel.app', 'http://localhost:5173'],
-  credentials: true
+  origin: ['https://blog-app-frontend-mocha-delta.vercel.app', 'http://localhost:5173'],
+  credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
