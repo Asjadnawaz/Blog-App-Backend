@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const { sendEmail } = require('./services/EmailService');
 
 // Load environment variables
 dotenv.config();
@@ -42,6 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Database connection
 const connectDB = require('./config/db');
+
 connectDB();
 
 
