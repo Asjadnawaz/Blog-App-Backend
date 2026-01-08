@@ -18,6 +18,9 @@ const app = express();
 // Force backend to listen on 5001 during development to avoid local port conflicts
 const PORT = process.env.PORT || 5001;
 
+// Trust Railway's reverse proxy
+app.set('trust proxy', true);
+
 // Middleware
 app.use(helmet()); // Security headers
 
@@ -38,6 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 // Database connection
 const connectDB = require('./config/db');
 connectDB();
+
+
 
 // Routes
 app.use('/api/auth', authRoutes);
