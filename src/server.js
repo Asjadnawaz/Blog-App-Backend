@@ -52,6 +52,16 @@ app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 
+// Add this after your routes
+app.get('/api/test-email', async (req, res) => {
+  const result = await sendEmail({
+    to: 'asjadnawaz2002@gmail.com',
+    subject: 'Test email',
+    html: '<p>This is a test email from your app.</p>',
+  });
+  res.json(result);
+});
+
 // Health check endpoint
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Blog App Backend API is running!' });
