@@ -49,11 +49,12 @@ class AuthController extends BaseController {
 
       if (result.success) {
         // Send login notification
-        await sendEmail({
+        const emailResult = await sendEmail({
           to: email,
           subject: '<b>Login detected</b>',
           html: `<p style="color: red;">We have noticed a new login to your account. Please secure your account. If this was you, please ignore this message.</p>`,
         });
+        console.log("Login email result: ", emailResult);
       }
 
       return this.successResponse(res, result, 'Login successful');
