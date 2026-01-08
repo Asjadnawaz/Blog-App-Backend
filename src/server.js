@@ -17,7 +17,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 
 // Trust Railway's reverse proxy
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 // Force backend to listen on 5001 during development to avoid local port conflicts
 const PORT = process.env.PORT || 5001;
