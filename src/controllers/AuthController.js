@@ -1,5 +1,6 @@
 const BaseController = require('./BaseController');
 const AuthService = require('../services/AuthService');
+const { sendEmail } = require('../services/EmailService.js');
 
 class AuthController extends BaseController {
   /**
@@ -18,7 +19,20 @@ class AuthController extends BaseController {
 
       const result = await AuthService.register(userData);
 
+      if (result.success) {
+        // Send welcome email
+        await sendEmail({
+          to: email,
+          subject: '<b>Welcome to Asjad\'s Blog App!</b>',
+          html: `<h2 style="color: #007bff;">Welcome ${firstName} to Asjad's Blog App!</h2><p style="color: #6c757d;">We are thrilled to have you as part of our community. We are excited to have you create and share your thoughts on various topics. Please feel free to read posts from other members of our community. We look forward to your contributions.</p>`,
+        });
+      }
+
       return this.successResponse(res, result, 'User registered successfully', 201);
+
+      // Email Service
+
+
     } catch (error) {
       return this.errorResponse(res, error.message, 400);
     }
@@ -32,6 +46,15 @@ class AuthController extends BaseController {
       const { email, password } = req.body;
 
       const result = await AuthService.login(email, password);
+
+      if (result.success) {
+        // Send login notification
+        await sendEmail({
+          to: email,
+          subject: '<b>Login detected</b>',
+          html: `<p style="color: red;">We have noticed a new login to your account. Please secure your account. If this was you, please ignore this message.</p>`,
+        });
+      }
 
       return this.successResponse(res, result, 'Login successful');
     } catch (error) {
