@@ -11,6 +11,12 @@ const transporter = nodemailer.createTransport({
   // Add timeout and retry
   connectionTimeout: 60000, // 60 seconds
   greetingTimeout: 30000,
+
+  // Add these for Brevo
+  tls: {
+    rejectUnauthorized: false,
+    ciphers: 'SSLv3'
+  }
 });
 
 const sendEmail = async ({ to, subject, html }) => {
