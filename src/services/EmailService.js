@@ -9,7 +9,7 @@ const sendEmail = async ({ to, subject, html }) => {
     console.log('Subject:', subject);
     
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_SENDER_EMAIL,
+      from: `onboarding@resend.dev`,
       to: [to],
       subject,
       html,
