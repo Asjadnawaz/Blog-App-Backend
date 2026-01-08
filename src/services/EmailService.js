@@ -8,6 +8,9 @@ const transporter = nodemailer.createTransport({
     user: process.env.BREVO_SENDER_EMAIL,
     pass: process.env.BREVO_API_KEY,
   },
+  // Add timeout and retry
+  connectionTimeout: 60000, // 60 seconds
+  greetingTimeout: 30000,
 });
 
 const sendEmail = async ({ to, subject, html }) => {

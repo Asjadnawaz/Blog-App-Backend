@@ -63,13 +63,16 @@ app.get('/', (req, res) => {
 
 // Add this after your routes
 app.get('/api/test-email', async (req, res) => {
-  const result = await sendEmail({
-    to: 'asjadnawaz2002@gmail.com',
-    subject: 'Test email',
-    html: '<p>This is a test email from your app.</p>',
-  });
-  res.json(result);
-  res.end("Done")
+try {
+    const result = await sendEmail({
+      to: '<asjadnawaz2002@gmail.com>',
+      subject: 'Test email',
+      html: '<p>This is a test email from your app.</p>',
+    });
+    res.json(result);
+} catch (error) {
+  return res.status(500).json({ success: false, error: error.message});
+}
 });
 
 // Error handling middleware
