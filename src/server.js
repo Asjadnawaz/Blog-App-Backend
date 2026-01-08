@@ -65,7 +65,7 @@ app.get('/', (req, res) => {
 app.get('/api/test-email', async (req, res) => {
 try {
     const result = await sendEmail({
-      to: '<asjadnawaz2002@gmail.com>',
+      to: 'asjadnawaz2002@gmail.com',
       subject: 'Test email',
       html: '<p>This is a test email from your app.</p>',
     });
