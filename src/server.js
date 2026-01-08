@@ -62,6 +62,7 @@ app.get('/api/test-email', async (req, res) => {
     html: '<p>This is a test email from your app.</p>',
   });
   res.json(result);
+  res.end("Done")
 });
 
 // Health check endpoint
