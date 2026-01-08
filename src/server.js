@@ -54,6 +54,13 @@ app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 
+
+
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Blog App Backend API is running!' });
+});
+
 // Add this after your routes
 app.get('/api/test-email', async (req, res) => {
   const result = await sendEmail({
@@ -63,11 +70,6 @@ app.get('/api/test-email', async (req, res) => {
   });
   res.json(result);
   res.end("Done")
-});
-
-// Health check endpoint
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Blog App Backend API is running!' });
 });
 
 // Error handling middleware
