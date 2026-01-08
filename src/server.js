@@ -15,11 +15,13 @@ const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
-// Force backend to listen on 5001 during development to avoid local port conflicts
-const PORT = process.env.PORT || 5001;
 
 // Trust Railway's reverse proxy
 app.set('trust proxy', true);
+
+// Force backend to listen on 5001 during development to avoid local port conflicts
+const PORT = process.env.PORT || 5001;
+
 
 // Middleware
 app.use(helmet()); // Security headers
